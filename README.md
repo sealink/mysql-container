@@ -13,10 +13,11 @@ This MySQL docker container is an alternative to MySQL Sandbox.
 
 ## Limitations
 
-1. The UID and GID cannot conllide with the ones in the container.
+1. The UID and GID cannot collide with the ones in the container.
 1. If the data files supplied don't allow access from `localhost`, you have to
    use `docker exec` and MySQL's `GRANT` to correct it.
    E.g. `GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';`
+1. Data files among different MySQL are not compatible.
 
 ## Usage
 
