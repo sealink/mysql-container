@@ -1,0 +1,8 @@
+mysql:
+  build: .
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: y
+  volumes:
+    - ./data:/var/lib/mysql
+  ports:
+    - 3306:3306
