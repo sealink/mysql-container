@@ -5,8 +5,13 @@ VOLUME_PATH=/var/lib/mysql
 MYSQL_UID=$(stat -c%u "$VOLUME_PATH")
 MYSQL_GID=$(stat -c%g "$VOLUME_PATH")
 
+if [ $MYSQL_UID -eq 0 ] && [ $MYSQL_GID -eq 0 ]; then
+  exec /entrypoint.sh "$@"
+fi
+
 if [ $MYSQL_UID -eq 0 ] || [ $MYSQL_GID -eq 0 ]; then
   >&2 echo "$VOLUME_PATH" must be mounted with non-root permissions
+  >&2 echo Unless you are using Docker for Mac
   exit 1
 fi
 
